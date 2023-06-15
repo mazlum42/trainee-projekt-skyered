@@ -1,0 +1,16 @@
+build dockerfile:
+  stage: dockerfile
+  script:
+  -  docker build -t pacmanimage .
+   
+
+test one:
+  stage: test
+  script:
+  - npm test
+   
+
+tag image:
+  stage: image
+  script:
+   - docker tag pacmanimage:1.2
