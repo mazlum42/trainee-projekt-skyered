@@ -1,7 +1,7 @@
 build dockerfile:
   stage: dockerfile
   script:
-  -  docker build -t pacmanimage .
+  -  docker build -t pacmanimage1 .
    
 
 test one:
@@ -13,4 +13,4 @@ test one:
 tag image:
   stage: image
   script:
-   - docker tag pacmanimage:1.2
+   - docker tag pacmanimage1:1.2

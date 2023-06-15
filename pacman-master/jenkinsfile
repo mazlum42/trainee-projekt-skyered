@@ -8,7 +8,7 @@ pipeline {
             steps {
 
                 sh'''
-                docker build -t pacmanimage .
+                docker build -t pacmanimage1 .
                 '''
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('image') {
             steps {
                 sh '''
-                docker tag pacmanimage:1.7
+                docker tag pacmanimage1:1.7
                 '''
             }
         }
