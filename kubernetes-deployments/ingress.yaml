@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-pacman
+  namespace: mazlumprojekt
+  annotations:
+   cert-manager.io/cluster-issuer: prod-cert-clusterissuer
+   acme.cert-manager.io/http01-edit-in-place: "true"
+spec:
+  ingressClassName: "dev-nginx"
+  tls:
+  - hosts:
+    - mazlumprojektpacman.skyered-devops.de
+    secretName: mazlumprojektpacman
+  rules:
+  - host: mazlumprojektpacman.skyered-devops.de
+    http:
+      paths:
+      - backend:
+          service:
+            name: pacman-service
+            port:
+              number: 80
+        pathType: Prefix
+        path: /
