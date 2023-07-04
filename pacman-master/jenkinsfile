@@ -8,7 +8,7 @@ pipeline {
             steps {
 
                 sh'''
-                docker build -t pacmanimage1 .
+                docker build -t pacman-image1 .
                 '''
             }
         }
@@ -22,10 +22,17 @@ pipeline {
         stage('image') {
             steps {
                 sh '''
-                docker tag pacmanimage1:1.7
+                docker tag pacman-image1
                 '''
             }
         }
+
+        stage('Deploy') {
+            steps {
+                withKubeConfig([credentialsId: 'kubeconfigpacman', serverUrl: 'https://skyered-devops.de:6443']) {
+                sh 'kubectl apply -f pacman-deployment.yaml -n mazlumprojekt'
+        }
+      }
 
 
     }

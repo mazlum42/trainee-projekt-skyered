@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  pacman:
+    image: pacman-image1
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/src
+    networks:
+      - node-network
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+    networks:
+      - node-network
+
+volumes:
+  dbdata6:
+
+networks:
+  node-network:
+    driver: bridge
+#volumes:
+ # node-mongo-data:
+    
+#version: "3"
+#services:
+  #pacman:
+  #  image: pacman-image1
+  #  container_name: pacman
+ #   restart: always
+  #  #build:
+    #  context: .
+     # dockerfile: Dockerfile
+  #  env_file: .env
+  #  ports:
+  #    - "8080:8080"
+   # links:
+   #   - mongo
+   # depends_on:
+    #  - mongo
+  #  environment:
+   #   WAIT_HOSTS: mongodb:27017
+   # networks:
+   #   - node-webapp-network
+ # mongo:
+#    container_name: mongo
+   # image: mongo:5.0.14
+  #  volumes:
+    #  - ~/mongo:/data/db
+  #  ports:
+  #    - "27017:27017"
+   # environment:
+   #   - MONGO_INITDB_ROOT_USERNAME=app_user
+  #    - MONGO_INITDB_ROOT_PASSWORD=app_password
+   #   - MONGO_INITDB_DATABASE=admin
+  #  networks:
+   #   - node-webapp-network
+#networks:
+ # node-webapp-network:
+ #   driver: bridge
