@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pacman-deployment
+  namespace: mazlumprojekt
+  labels:
+    app: pacman
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pacman
+  template:
+    metadata:
+      labels:
+        app: pacman
+    spec:
+      containers:
+      - name: pacman
+        image: harbor.skyered-devops.de/projektmazlum/pacman-master:1.0
+        env:
+        - name: MONGO_SERVICE_HOST
+          value: mongo-service.mazlumprojekt.svc.cluster.local
+        - name: MONGO_DATABASE
+          value: "pacman"
+        - name: MY_MONGO_PORT
+          value: "80"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        #command:
+         # - npm start
