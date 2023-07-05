@@ -11,4 +11,4 @@ spec:
     path: kubernetes-deployments
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocdmazlum
+    namespace: mazlumprojekt
